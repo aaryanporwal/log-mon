@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignment</title>
+  </head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io("ws://localhost:3000");
+
+    socket.on("log_update", function (data) {
+      console.log(data);
+      for (elem of data)
+        document.getElementById("root").innerHTML += "<p>" + elem + "</br><p>";
+    });
+    socket.on("init", function (data) {
+      console.log(data);
+      for (elem of data)
+        document.getElementById("root").innerHTML += "<p>" + elem + "</br><p>";
+    });
+  </script>
+  <body>
+    <h1>Monitor logs</h1>
+    <div id="root"></div>
+  </body>
+</html>
